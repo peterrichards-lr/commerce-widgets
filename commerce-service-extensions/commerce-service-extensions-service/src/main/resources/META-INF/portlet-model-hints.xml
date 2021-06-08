@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.liferaybotics.model.SkuInventory">
+		<field name="sku" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="quantity" type="int" />
+		<field name="bookedQuantity" type="int" />
+		<field name="reservedQuantity" type="int" />
+		<field name="availableQuantity" type="int" />
+	</model>
+	<model name="com.liferay.liferaybotics.model.SkuSales">
+		<field name="sku" type="String" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="quantitySold" type="int" />
+	</model>
+</model-hints>

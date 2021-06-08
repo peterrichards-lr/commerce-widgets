@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<custom-sql>
+    <sql id="com.liferay.liferaybotics.service.persistence.SkuInventoryFinder.findLowestStock">
+    	<![CDATA[
+		SELECT
+			CIWarehouseItem.companyId,
+			Group_.groupId,
+			CIWarehouseItem.sku,
+			SUM(CIWarehouseItem.quantity) AS quantity,
+			SUM(IFNULL(CIBookedQuantity.quantity, 0)) AS bookedQuantity,
+			SUM(IFNULL(CIWarehouseItem.reservedQuantity, 0)) AS reservedQuantity,
+			SUM(CIWarehouseItem.quantity - IFNULL(CIBookedQuantity.quantity, 0) - CIWarehouseItem.reservedQuantity) AS availableQuantity
+		FROM
+			CIWarehouseItem
+		INNER JOIN
+			CommerceChannelRel
+		ON
+			CIWarehouseItem.commerceInventoryWarehouseId = CommerceChannelRel.classPK
+		LEFT JOIN
+			CIBookedQuantity
+		ON
+			CIBookedQuantity.sku = CIWarehouseItem.sku
+		INNER JOIN
+			CommerceChannel
+		ON
+			CommerceChannelRel.commerceChannelId = CommerceChannel.commerceChannelId
+		INNER JOIN
+			Group_
+		ON
+			CommerceChannel.commerceChannelId = Group_.classPK
+		INNER JOIN
+			CIWarehouse
+		ON
+			CIWarehouseItem.commerceInventoryWarehouseId = CIWarehouse.CIWarehouseId
+		WHERE
+			(CIWarehouseItem.companyId = ?) AND
+			(Group_.groupId = ?) AND
+			(CIWarehouse.active_ = 1)
+		GROUP BY CIWarehouseItem.sku, CIWarehouseItem.companyId, Group_.groupId
+		ORDER BY availableQuantity
+    	]]>
+    </sql>
+    <sql  id="com.liferay.liferaybotics.service.persistence.SkuSalesFinder.findProductSales">
+     <![CDATA[
+   		SELECT
+			CIWarehouseItem.companyId,
+			Group_.groupId,
+			CIWarehouseItem.sku,
+			SUM(IFNULL(CommerceOrderItem.quantity, 0)) as quantitySold
+		FROM
+			CIWarehouseItem
+		INNER JOIN
+			CommerceChannelRel
+		ON
+			CIWarehouseItem.commerceInventoryWarehouseId = CommerceChannelRel.classPK			
+		INNER JOIN
+			CommerceChannel
+		ON
+			CommerceChannelRel.commerceChannelId = CommerceChannel.commerceChannelId
+		INNER JOIN
+			Group_
+		ON
+			CommerceChannel.commerceChannelId = Group_.classPK
+		LEFT JOIN
+			CommerceOrderItem
+		ON
+			CIWarehouseItem.sku = CommerceOrderItem.sku
+ 		LEFT JOIN
+ 			(
+ 				SELECT commerceOrderId
+				 FROM CommerceOrder
+				WHERE
+					(CommerceOrder.orderStatus IN ([$ORDER_STATUS$]))
+			) AS FilteredCommerceOrder
+ 		ON
+ 			FilteredCommerceOrder.commerceOrderId = CommerceOrderItem.commerceOrderId
+ 		WHERE
+			(CIWarehouseItem.companyId = ?) AND
+			(Group_.groupId = ?)
+		GROUP BY
+			CIWarehouseItem.companyId, Group_.groupId, CIWarehouseItem.sku
+		ORDER BY
+			quantitySold [$ORDER_MODIFIER$], CIWarehouseItem.sku
+		]]>     
+    </sql>
+</custom-sql>

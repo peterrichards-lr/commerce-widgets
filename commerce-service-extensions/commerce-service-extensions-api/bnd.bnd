@@ -1,0 +1,10 @@
+Bundle-Name: commerce-service-extensions-api
+Bundle-SymbolicName: com.liferay.liferaybotics.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.liferaybotics.exception,\
+	com.liferay.liferaybotics.model,\
+	com.liferay.liferaybotics.service,\
+	com.liferay.liferaybotics.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../commerce-service-extensions-service/service.xml
