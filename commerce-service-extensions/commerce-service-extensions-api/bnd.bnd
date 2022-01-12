@@ -5,6 +5,7 @@ Export-Package:\
 	com.liferay.liferaybotics.exception,\
 	com.liferay.liferaybotics.model,\
 	com.liferay.liferaybotics.service,\
-	com.liferay.liferaybotics.service.persistence
+	com.liferay.liferaybotics.service.persistence,\
+	com.liferay.liferaybotics.util.comparator
 -check: EXPORTS
 -includeresource: META-INF/service.xml=../commerce-service-extensions-service/service.xml
