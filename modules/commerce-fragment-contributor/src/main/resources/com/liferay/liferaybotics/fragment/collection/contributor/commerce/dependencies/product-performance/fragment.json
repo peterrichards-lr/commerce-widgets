@@ -1,0 +1,10 @@
+{
+	"fragmentEntryKey": "product-performance",
+	"name": "product-performance",
+	"thumbnail": "product-performance.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css"
+}

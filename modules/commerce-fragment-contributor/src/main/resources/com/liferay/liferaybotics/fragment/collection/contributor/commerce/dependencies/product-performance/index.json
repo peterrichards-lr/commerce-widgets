@@ -68,6 +68,32 @@
 					 "defaultValue": true
 				 },
 				 {
+					 "dataType": "string",
+					 "defaultValue": "link",
+					 "label": "type",
+					 "name": "buttonType",
+					 "type": "select",
+					 "typeOptions": {
+						 "validValues": [
+							 {
+								 "value": "primary"
+							 },
+							 {
+								 "value": "secondary"
+							 },
+							 {
+								 "value": "link"
+							 },
+							 {
+								 "value": "outline-primary"
+							 },
+							 {
+								 "value": "outline-secondary"
+							 }
+						 ]
+					 }
+				 },
+				 {
 					 "name": "buttonLink",
 					 "label": "Button Link",
 					 "description": "The button link",
@@ -79,7 +105,7 @@
 					 "label": "Button Text",
 					 "description": "The button text",
 					 "type": "text",
-					 "defaultValue": "View All"
+					 "defaultValue": "Show All"
 				 },
 				 {
 					 "name": "sortAsc",

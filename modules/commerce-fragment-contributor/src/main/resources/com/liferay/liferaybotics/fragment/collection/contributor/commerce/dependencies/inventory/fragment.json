@@ -1,0 +1,10 @@
+{
+	"fragmentEntryKey": "inventory",
+	"name": "inventory",
+	"thumbnail": "inventory.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css"
+}

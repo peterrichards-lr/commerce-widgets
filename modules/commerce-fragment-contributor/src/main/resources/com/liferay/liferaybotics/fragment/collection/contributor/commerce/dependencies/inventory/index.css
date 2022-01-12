@@ -1,0 +1,41 @@
+.commerce-inventory-web-1001 {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	background-color: white;
+	border-radius: 0 0 8px 8px;
+	overflow: hidden;
+}
+
+.commerce-inventory-web-1001 .header-wapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1rem;
+	border-bottom: solid var(- -spacer-1) var(- -body-bg);
+}
+
+.commerce-inventory-web-1001 .header {
+	font-size: 16px;
+	line-height: 125%;
+	color: #28282B;
+}
+
+.commerce-inventory-web-1001 .link {
+	font-size: .75rem;
+	line-height: 1.125rem;
+	color: #71D2E8;
+	margin-bottom: unset;
+}
+
+.commerce-inventory-web-1001 th {
+	font-weight: bold;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+.commerce-inventory-web-1001 .footer {
+	text-align: center;
+}
