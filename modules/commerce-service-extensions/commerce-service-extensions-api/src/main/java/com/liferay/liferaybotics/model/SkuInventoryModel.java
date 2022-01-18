@@ -156,4 +156,7 @@ public interface SkuInventoryModel
 	 */
 	public void setAvailableQuantity(int availableQuantity);
 
+	@Override
+	public SkuInventory cloneWithOriginalValues();
+
 }

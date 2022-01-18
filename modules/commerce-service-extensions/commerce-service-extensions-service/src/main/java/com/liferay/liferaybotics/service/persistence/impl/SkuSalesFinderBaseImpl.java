@@ -65,13 +65,4 @@ public abstract class SkuSalesFinderBaseImpl
 	@Reference
 	protected SkuSalesPersistence skuSalesPersistence;
 
-	static {
-		try {
-			Class.forName(LiferayboticsPersistenceConstants.class.getName());
-		}
-		catch (ClassNotFoundException classNotFoundException) {
-			throw new ExceptionInInitializerError(classNotFoundException);
-		}
-	}
-
 }

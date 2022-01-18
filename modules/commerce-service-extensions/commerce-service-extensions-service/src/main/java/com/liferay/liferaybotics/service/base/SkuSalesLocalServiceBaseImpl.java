@@ -16,10 +16,12 @@ package com.liferay.liferaybotics.service.base;
 
 import com.liferay.liferaybotics.model.SkuSales;
 import com.liferay.liferaybotics.service.SkuSalesLocalService;
+import com.liferay.liferaybotics.service.SkuSalesLocalServiceUtil;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryFinder;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryPersistence;
 import com.liferay.liferaybotics.service.persistence.SkuSalesFinder;
 import com.liferay.liferaybotics.service.persistence.SkuSalesPersistence;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -43,10 +45,13 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -67,7 +72,7 @@ public abstract class SkuSalesLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>SkuSalesLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.liferaybotics.service.SkuSalesLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>SkuSalesLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>SkuSalesLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -131,6 +136,18 @@ public abstract class SkuSalesLocalServiceBaseImpl
 	@Override
 	public SkuSales deleteSkuSales(SkuSales skuSales) {
 		return skuSalesPersistence.remove(skuSales);
+	}
+
+	@Override
+	public <T> T dslQuery(DSLQuery dslQuery) {
+		return skuSalesPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -240,6 +257,7 @@ public abstract class SkuSalesLocalServiceBaseImpl
 	/**
 	 * @throws PortalException
 	 */
+	@Override
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
@@ -256,6 +274,7 @@ public abstract class SkuSalesLocalServiceBaseImpl
 		return skuSalesLocalService.deleteSkuSales((SkuSales)persistedModel);
 	}
 
+	@Override
 	public BasePersistence<SkuSales> getBasePersistence() {
 		return skuSalesPersistence;
 	}
@@ -312,6 +331,11 @@ public abstract class SkuSalesLocalServiceBaseImpl
 		return skuSalesPersistence.update(skuSales);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -323,6 +347,8 @@ public abstract class SkuSalesLocalServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		skuSalesLocalService = (SkuSalesLocalService)aopProxy;
+
+		_setLocalServiceUtilService(skuSalesLocalService);
 	}
 
 	/**
@@ -364,6 +390,22 @@ public abstract class SkuSalesLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		SkuSalesLocalService skuSalesLocalService) {
+
+		try {
+			Field field = SkuSalesLocalServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, skuSalesLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

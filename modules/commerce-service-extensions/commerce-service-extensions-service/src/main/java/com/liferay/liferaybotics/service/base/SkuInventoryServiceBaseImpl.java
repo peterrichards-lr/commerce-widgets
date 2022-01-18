@@ -16,6 +16,7 @@ package com.liferay.liferaybotics.service.base;
 
 import com.liferay.liferaybotics.model.SkuInventory;
 import com.liferay.liferaybotics.service.SkuInventoryService;
+import com.liferay.liferaybotics.service.SkuInventoryServiceUtil;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryFinder;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryPersistence;
 import com.liferay.liferaybotics.service.persistence.SkuSalesFinder;
@@ -30,8 +31,11 @@ import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiServic
 import com.liferay.portal.kernel.service.BaseServiceImpl;
 import com.liferay.portal.kernel.util.PortalUtil;
 
+import java.lang.reflect.Field;
+
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -52,8 +56,13 @@ public abstract class SkuInventoryServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>SkuInventoryService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.liferaybotics.service.SkuInventoryServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>SkuInventoryService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>SkuInventoryServiceUtil</code>.
 	 */
+	@Deactivate
+	protected void deactivate() {
+		_setServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -64,6 +73,8 @@ public abstract class SkuInventoryServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		skuInventoryService = (SkuInventoryService)aopProxy;
+
+		_setServiceUtilService(skuInventoryService);
 	}
 
 	/**
@@ -105,6 +116,22 @@ public abstract class SkuInventoryServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setServiceUtilService(
+		SkuInventoryService skuInventoryService) {
+
+		try {
+			Field field = SkuInventoryServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, skuInventoryService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

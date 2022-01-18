@@ -98,6 +98,11 @@ public class SkuInventoryWrapper
 		}
 	}
 
+	@Override
+	public SkuInventory cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the available quantity of this sku inventory.
 	 *

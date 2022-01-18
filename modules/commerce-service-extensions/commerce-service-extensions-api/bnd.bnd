@@ -1,6 +1,6 @@
 Bundle-Name: commerce-service-extensions-api
 Bundle-SymbolicName: com.liferay.liferaybotics.api
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0
 Export-Package:\
 	com.liferay.liferaybotics.exception,\
 	com.liferay.liferaybotics.model,\

@@ -14,9 +14,16 @@
 
 package com.liferay.liferaybotics.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.liferaybotics.model.SkuInventory;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for SkuInventory. This utility wraps
@@ -48,18 +55,16 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param skuInventory the sku inventory
 	 * @return the sku inventory that was added
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory addSkuInventory(
-		com.liferay.liferaybotics.model.SkuInventory skuInventory) {
-
+	public static SkuInventory addSkuInventory(SkuInventory skuInventory) {
 		return getService().addSkuInventory(skuInventory);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -70,19 +75,16 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param sku the primary key for the new sku inventory
 	 * @return the new sku inventory
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory
-		createSkuInventory(String sku) {
-
+	public static SkuInventory createSkuInventory(String sku) {
 		return getService().createSkuInventory(sku);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
@@ -97,10 +99,7 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param skuInventory the sku inventory
 	 * @return the sku inventory that was removed
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory
-		deleteSkuInventory(
-			com.liferay.liferaybotics.model.SkuInventory skuInventory) {
-
+	public static SkuInventory deleteSkuInventory(SkuInventory skuInventory) {
 		return getService().deleteSkuInventory(skuInventory);
 	}
 
@@ -115,16 +114,21 @@ public class SkuInventoryLocalServiceUtil {
 	 * @return the sku inventory that was removed
 	 * @throws PortalException if a sku inventory with the primary key could not be found
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory
-			deleteSkuInventory(String sku)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static SkuInventory deleteSkuInventory(String sku)
+		throws PortalException {
 
 		return getService().deleteSkuInventory(sku);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static <T> T dslQuery(DSLQuery dslQuery) {
+		return getService().dslQuery(dslQuery);
+	}
 
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
+
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -134,9 +138,7 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -152,9 +154,8 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -172,10 +173,9 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -187,9 +187,7 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -201,20 +199,18 @@ public class SkuInventoryLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.liferaybotics.model.SkuInventory
-		fetchSkuInventory(String sku) {
-
+	public static SkuInventory fetchSkuInventory(String sku) {
 		return getService().fetchSkuInventory(sku);
 	}
 
-	public static java.util.List<com.liferay.liferaybotics.model.SkuInventory>
-		findLowestStock(long companyId, long groupId, int start, int end) {
+	public static List<SkuInventory> findLowestStock(
+		long companyId, long groupId, int start, int end) {
 
 		return getService().findLowestStock(companyId, groupId, start, end);
 	}
@@ -231,9 +227,8 @@ public class SkuInventoryLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -249,9 +244,7 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param end the upper bound of the range of sku inventories (not inclusive)
 	 * @return the range of sku inventories
 	 */
-	public static java.util.List<com.liferay.liferaybotics.model.SkuInventory>
-		getSkuInventories(int start, int end) {
-
+	public static List<SkuInventory> getSkuInventories(int start, int end) {
 		return getService().getSkuInventories(start, end);
 	}
 
@@ -271,9 +264,8 @@ public class SkuInventoryLocalServiceUtil {
 	 * @return the sku inventory
 	 * @throws PortalException if a sku inventory with the primary key could not be found
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory getSkuInventory(
-			String sku)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static SkuInventory getSkuInventory(String sku)
+		throws PortalException {
 
 		return getService().getSkuInventory(sku);
 	}
@@ -288,33 +280,14 @@ public class SkuInventoryLocalServiceUtil {
 	 * @param skuInventory the sku inventory
 	 * @return the sku inventory that was updated
 	 */
-	public static com.liferay.liferaybotics.model.SkuInventory
-		updateSkuInventory(
-			com.liferay.liferaybotics.model.SkuInventory skuInventory) {
-
+	public static SkuInventory updateSkuInventory(SkuInventory skuInventory) {
 		return getService().updateSkuInventory(skuInventory);
 	}
 
 	public static SkuInventoryLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker
-		<SkuInventoryLocalService, SkuInventoryLocalService> _serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(SkuInventoryLocalService.class);
-
-		ServiceTracker<SkuInventoryLocalService, SkuInventoryLocalService>
-			serviceTracker =
-				new ServiceTracker
-					<SkuInventoryLocalService, SkuInventoryLocalService>(
-						bundle.getBundleContext(),
-						SkuInventoryLocalService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile SkuInventoryLocalService _service;
 
 }

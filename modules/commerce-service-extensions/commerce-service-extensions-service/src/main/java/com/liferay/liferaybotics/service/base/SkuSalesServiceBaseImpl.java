@@ -16,6 +16,7 @@ package com.liferay.liferaybotics.service.base;
 
 import com.liferay.liferaybotics.model.SkuSales;
 import com.liferay.liferaybotics.service.SkuSalesService;
+import com.liferay.liferaybotics.service.SkuSalesServiceUtil;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryFinder;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryPersistence;
 import com.liferay.liferaybotics.service.persistence.SkuSalesFinder;
@@ -30,8 +31,11 @@ import com.liferay.portal.kernel.module.framework.service.IdentifiableOSGiServic
 import com.liferay.portal.kernel.service.BaseServiceImpl;
 import com.liferay.portal.kernel.util.PortalUtil;
 
+import java.lang.reflect.Field;
+
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -52,8 +56,13 @@ public abstract class SkuSalesServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>SkuSalesService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.liferaybotics.service.SkuSalesServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>SkuSalesService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>SkuSalesServiceUtil</code>.
 	 */
+	@Deactivate
+	protected void deactivate() {
+		_setServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -64,6 +73,8 @@ public abstract class SkuSalesServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		skuSalesService = (SkuSalesService)aopProxy;
+
+		_setServiceUtilService(skuSalesService);
 	}
 
 	/**
@@ -105,6 +116,20 @@ public abstract class SkuSalesServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setServiceUtilService(SkuSalesService skuSalesService) {
+		try {
+			Field field = SkuSalesServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, skuSalesService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

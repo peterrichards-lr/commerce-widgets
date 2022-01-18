@@ -1,4 +1,4 @@
 Bundle-Name: commerce-sales-web
 Bundle-SymbolicName: com.liferay.liferaybotics.sales.web
-Bundle-Version: 1.0.0
+Bundle-Version: 1.1.0
 Export-Package: com.liferay.liferaybotics.sales.web.constants

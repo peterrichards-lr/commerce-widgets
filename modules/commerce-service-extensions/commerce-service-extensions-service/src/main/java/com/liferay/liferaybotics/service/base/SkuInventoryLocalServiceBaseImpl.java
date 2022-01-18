@@ -16,10 +16,12 @@ package com.liferay.liferaybotics.service.base;
 
 import com.liferay.liferaybotics.model.SkuInventory;
 import com.liferay.liferaybotics.service.SkuInventoryLocalService;
+import com.liferay.liferaybotics.service.SkuInventoryLocalServiceUtil;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryFinder;
 import com.liferay.liferaybotics.service.persistence.SkuInventoryPersistence;
 import com.liferay.liferaybotics.service.persistence.SkuSalesFinder;
 import com.liferay.liferaybotics.service.persistence.SkuSalesPersistence;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.aop.AopService;
 import com.liferay.portal.kernel.dao.db.DB;
 import com.liferay.portal.kernel.dao.db.DBManagerUtil;
@@ -43,10 +45,13 @@ import com.liferay.portal.kernel.util.PortalUtil;
 
 import java.io.Serializable;
 
+import java.lang.reflect.Field;
+
 import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 
 /**
@@ -67,7 +72,7 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 	/*
 	 * NOTE FOR DEVELOPERS:
 	 *
-	 * Never modify or reference this class directly. Use <code>SkuInventoryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>com.liferay.liferaybotics.service.SkuInventoryLocalServiceUtil</code>.
+	 * Never modify or reference this class directly. Use <code>SkuInventoryLocalService</code> via injection or a <code>org.osgi.util.tracker.ServiceTracker</code> or use <code>SkuInventoryLocalServiceUtil</code>.
 	 */
 
 	/**
@@ -131,6 +136,18 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 	@Override
 	public SkuInventory deleteSkuInventory(SkuInventory skuInventory) {
 		return skuInventoryPersistence.remove(skuInventory);
+	}
+
+	@Override
+	public <T> T dslQuery(DSLQuery dslQuery) {
+		return skuInventoryPersistence.dslQuery(dslQuery);
+	}
+
+	@Override
+	public int dslQueryCount(DSLQuery dslQuery) {
+		Long count = dslQuery(dslQuery);
+
+		return count.intValue();
 	}
 
 	@Override
@@ -240,6 +257,7 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 	/**
 	 * @throws PortalException
 	 */
+	@Override
 	public PersistedModel createPersistedModel(Serializable primaryKeyObj)
 		throws PortalException {
 
@@ -257,6 +275,7 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 			(SkuInventory)persistedModel);
 	}
 
+	@Override
 	public BasePersistence<SkuInventory> getBasePersistence() {
 		return skuInventoryPersistence;
 	}
@@ -313,6 +332,11 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 		return skuInventoryPersistence.update(skuInventory);
 	}
 
+	@Deactivate
+	protected void deactivate() {
+		_setLocalServiceUtilService(null);
+	}
+
 	@Override
 	public Class<?>[] getAopInterfaces() {
 		return new Class<?>[] {
@@ -324,6 +348,8 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 	@Override
 	public void setAopProxy(Object aopProxy) {
 		skuInventoryLocalService = (SkuInventoryLocalService)aopProxy;
+
+		_setLocalServiceUtilService(skuInventoryLocalService);
 	}
 
 	/**
@@ -365,6 +391,22 @@ public abstract class SkuInventoryLocalServiceBaseImpl
 		}
 		catch (Exception exception) {
 			throw new SystemException(exception);
+		}
+	}
+
+	private void _setLocalServiceUtilService(
+		SkuInventoryLocalService skuInventoryLocalService) {
+
+		try {
+			Field field = SkuInventoryLocalServiceUtil.class.getDeclaredField(
+				"_service");
+
+			field.setAccessible(true);
+
+			field.set(null, skuInventoryLocalService);
+		}
+		catch (ReflectiveOperationException reflectiveOperationException) {
+			throw new RuntimeException(reflectiveOperationException);
 		}
 	}
 

@@ -26,10 +26,8 @@
 	commerceContext??] [#assign channelGroupId =
 	commerceContext.getCommerceChannelGroupId() ! /] [#else] [#assign
 	channelGroupId = 0 ! /] [/#if] [#else] [#assign channelGroupId = 0 ! /]
-	[/#if] [#assign skuSalesService =
-	serviceLocator.findService("com.liferay.liferaybotics.service.SkuSalesService")!
-	/] [#assign orderStatuses = [15] ! /] [#assign skuSales =
-	skuSalesService.findProductSales(themeDisplay.getCompanyId(),
+	[/#if] [#assign orderStatuses = [15] ! /] [#assign skuSales =
+	commerceServiceExtensionsHelper.findProductSales(themeDisplay.getCompanyId(),
 	channelGroupId, orderStatuses, configuration.sortAsc, startIndex,
 	endIndex) ! /]
 	<table class="table table-striped">

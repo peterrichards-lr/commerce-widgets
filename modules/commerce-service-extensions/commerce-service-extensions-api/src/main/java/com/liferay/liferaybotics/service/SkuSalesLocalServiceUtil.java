@@ -14,9 +14,16 @@
 
 package com.liferay.liferaybotics.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.liferaybotics.model.SkuSales;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.PersistedModel;
+import com.liferay.portal.kernel.util.OrderByComparator;
+
+import java.io.Serializable;
+
+import java.util.List;
 
 /**
  * Provides the local service utility for SkuSales. This utility wraps
@@ -48,18 +55,16 @@ public class SkuSalesLocalServiceUtil {
 	 * @param skuSales the sku sales
 	 * @return the sku sales that was added
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales addSkuSales(
-		com.liferay.liferaybotics.model.SkuSales skuSales) {
-
+	public static SkuSales addSkuSales(SkuSales skuSales) {
 		return getService().addSkuSales(skuSales);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			createPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel createPersistedModel(
+			Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().createPersistedModel(primaryKeyObj);
 	}
@@ -70,19 +75,16 @@ public class SkuSalesLocalServiceUtil {
 	 * @param sku the primary key for the new sku sales
 	 * @return the new sku sales
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales createSkuSales(
-		String sku) {
-
+	public static SkuSales createSkuSales(String sku) {
 		return getService().createSkuSales(sku);
 	}
 
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			deletePersistedModel(
-				com.liferay.portal.kernel.model.PersistedModel persistedModel)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel deletePersistedModel(
+			PersistedModel persistedModel)
+		throws PortalException {
 
 		return getService().deletePersistedModel(persistedModel);
 	}
@@ -97,9 +99,7 @@ public class SkuSalesLocalServiceUtil {
 	 * @param skuSales the sku sales
 	 * @return the sku sales that was removed
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales deleteSkuSales(
-		com.liferay.liferaybotics.model.SkuSales skuSales) {
-
+	public static SkuSales deleteSkuSales(SkuSales skuSales) {
 		return getService().deleteSkuSales(skuSales);
 	}
 
@@ -114,16 +114,19 @@ public class SkuSalesLocalServiceUtil {
 	 * @return the sku sales that was removed
 	 * @throws PortalException if a sku sales with the primary key could not be found
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales deleteSkuSales(
-			String sku)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static SkuSales deleteSkuSales(String sku) throws PortalException {
 		return getService().deleteSkuSales(sku);
 	}
 
-	public static com.liferay.portal.kernel.dao.orm.DynamicQuery
-		dynamicQuery() {
+	public static <T> T dslQuery(DSLQuery dslQuery) {
+		return getService().dslQuery(dslQuery);
+	}
 
+	public static int dslQueryCount(DSLQuery dslQuery) {
+		return getService().dslQueryCount(dslQuery);
+	}
+
+	public static DynamicQuery dynamicQuery() {
 		return getService().dynamicQuery();
 	}
 
@@ -133,9 +136,7 @@ public class SkuSalesLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static <T> List<T> dynamicQuery(DynamicQuery dynamicQuery) {
 		return getService().dynamicQuery(dynamicQuery);
 	}
 
@@ -151,9 +152,8 @@ public class SkuSalesLocalServiceUtil {
 	 * @param end the upper bound of the range of model instances (not inclusive)
 	 * @return the range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end) {
 
 		return getService().dynamicQuery(dynamicQuery, start, end);
 	}
@@ -171,10 +171,9 @@ public class SkuSalesLocalServiceUtil {
 	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @return the ordered range of matching rows
 	 */
-	public static <T> java.util.List<T> dynamicQuery(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery, int start,
-		int end,
-		com.liferay.portal.kernel.util.OrderByComparator<T> orderByComparator) {
+	public static <T> List<T> dynamicQuery(
+		DynamicQuery dynamicQuery, int start, int end,
+		OrderByComparator<T> orderByComparator) {
 
 		return getService().dynamicQuery(
 			dynamicQuery, start, end, orderByComparator);
@@ -186,9 +185,7 @@ public class SkuSalesLocalServiceUtil {
 	 * @param dynamicQuery the dynamic query
 	 * @return the number of rows matching the dynamic query
 	 */
-	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery) {
-
+	public static long dynamicQueryCount(DynamicQuery dynamicQuery) {
 		return getService().dynamicQueryCount(dynamicQuery);
 	}
 
@@ -200,22 +197,19 @@ public class SkuSalesLocalServiceUtil {
 	 * @return the number of rows matching the dynamic query
 	 */
 	public static long dynamicQueryCount(
-		com.liferay.portal.kernel.dao.orm.DynamicQuery dynamicQuery,
+		DynamicQuery dynamicQuery,
 		com.liferay.portal.kernel.dao.orm.Projection projection) {
 
 		return getService().dynamicQueryCount(dynamicQuery, projection);
 	}
 
-	public static com.liferay.liferaybotics.model.SkuSales fetchSkuSales(
-		String sku) {
-
+	public static SkuSales fetchSkuSales(String sku) {
 		return getService().fetchSkuSales(sku);
 	}
 
-	public static java.util.List<com.liferay.liferaybotics.model.SkuSales>
-		findProductSales(
-			long companyId, long groupId, int[] orderStatuses,
-			boolean lowestSales, int start, int end) {
+	public static List<SkuSales> findProductSales(
+		long companyId, long groupId, int[] orderStatuses, boolean lowestSales,
+		int start, int end) {
 
 		return getService().findProductSales(
 			companyId, groupId, orderStatuses, lowestSales, start, end);
@@ -233,9 +227,8 @@ public class SkuSalesLocalServiceUtil {
 	/**
 	 * @throws PortalException
 	 */
-	public static com.liferay.portal.kernel.model.PersistedModel
-			getPersistedModel(java.io.Serializable primaryKeyObj)
-		throws com.liferay.portal.kernel.exception.PortalException {
+	public static PersistedModel getPersistedModel(Serializable primaryKeyObj)
+		throws PortalException {
 
 		return getService().getPersistedModel(primaryKeyObj);
 	}
@@ -247,10 +240,7 @@ public class SkuSalesLocalServiceUtil {
 	 * @return the sku sales
 	 * @throws PortalException if a sku sales with the primary key could not be found
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales getSkuSales(
-			String sku)
-		throws com.liferay.portal.kernel.exception.PortalException {
-
+	public static SkuSales getSkuSales(String sku) throws PortalException {
 		return getService().getSkuSales(sku);
 	}
 
@@ -265,9 +255,7 @@ public class SkuSalesLocalServiceUtil {
 	 * @param end the upper bound of the range of sku saleses (not inclusive)
 	 * @return the range of sku saleses
 	 */
-	public static java.util.List<com.liferay.liferaybotics.model.SkuSales>
-		getSkuSaleses(int start, int end) {
-
+	public static List<SkuSales> getSkuSaleses(int start, int end) {
 		return getService().getSkuSaleses(start, end);
 	}
 
@@ -290,31 +278,14 @@ public class SkuSalesLocalServiceUtil {
 	 * @param skuSales the sku sales
 	 * @return the sku sales that was updated
 	 */
-	public static com.liferay.liferaybotics.model.SkuSales updateSkuSales(
-		com.liferay.liferaybotics.model.SkuSales skuSales) {
-
+	public static SkuSales updateSkuSales(SkuSales skuSales) {
 		return getService().updateSkuSales(skuSales);
 	}
 
 	public static SkuSalesLocalService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<SkuSalesLocalService, SkuSalesLocalService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(SkuSalesLocalService.class);
-
-		ServiceTracker<SkuSalesLocalService, SkuSalesLocalService>
-			serviceTracker =
-				new ServiceTracker<SkuSalesLocalService, SkuSalesLocalService>(
-					bundle.getBundleContext(), SkuSalesLocalService.class,
-					null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile SkuSalesLocalService _service;
 
 }

@@ -14,9 +14,9 @@
 
 package com.liferay.liferaybotics.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.liferaybotics.model.SkuSales;
+
+import java.util.List;
 
 /**
  * Provides the remote service utility for SkuSales. This utility wraps
@@ -37,10 +37,9 @@ public class SkuSalesServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.liferaybotics.service.impl.SkuSalesServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static java.util.List<com.liferay.liferaybotics.model.SkuSales>
-		findProductSales(
-			long companyId, long groupId, int[] orderStatuses,
-			boolean lowestSales, int start, int end) {
+	public static List<SkuSales> findProductSales(
+		long companyId, long groupId, int[] orderStatuses, boolean lowestSales,
+		int start, int end) {
 
 		return getService().findProductSales(
 			companyId, groupId, orderStatuses, lowestSales, start, end);
@@ -56,22 +55,9 @@ public class SkuSalesServiceUtil {
 	}
 
 	public static SkuSalesService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<SkuSalesService, SkuSalesService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(SkuSalesService.class);
-
-		ServiceTracker<SkuSalesService, SkuSalesService> serviceTracker =
-			new ServiceTracker<SkuSalesService, SkuSalesService>(
-				bundle.getBundleContext(), SkuSalesService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile SkuSalesService _service;
 
 }

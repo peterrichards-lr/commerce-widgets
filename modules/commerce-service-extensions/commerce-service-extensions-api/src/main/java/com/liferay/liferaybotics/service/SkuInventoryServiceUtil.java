@@ -14,9 +14,9 @@
 
 package com.liferay.liferaybotics.service;
 
-import org.osgi.framework.Bundle;
-import org.osgi.framework.FrameworkUtil;
-import org.osgi.util.tracker.ServiceTracker;
+import com.liferay.liferaybotics.model.SkuInventory;
+
+import java.util.List;
 
 /**
  * Provides the remote service utility for SkuInventory. This utility wraps
@@ -37,8 +37,8 @@ public class SkuInventoryServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to <code>com.liferay.liferaybotics.service.impl.SkuInventoryServiceImpl</code> and rerun ServiceBuilder to regenerate this class.
 	 */
-	public static java.util.List<com.liferay.liferaybotics.model.SkuInventory>
-		findLowestStock(long companyId, long groupId, int start, int end) {
+	public static List<SkuInventory> findLowestStock(
+		long companyId, long groupId, int start, int end) {
 
 		return getService().findLowestStock(companyId, groupId, start, end);
 	}
@@ -53,23 +53,9 @@ public class SkuInventoryServiceUtil {
 	}
 
 	public static SkuInventoryService getService() {
-		return _serviceTracker.getService();
+		return _service;
 	}
 
-	private static ServiceTracker<SkuInventoryService, SkuInventoryService>
-		_serviceTracker;
-
-	static {
-		Bundle bundle = FrameworkUtil.getBundle(SkuInventoryService.class);
-
-		ServiceTracker<SkuInventoryService, SkuInventoryService>
-			serviceTracker =
-				new ServiceTracker<SkuInventoryService, SkuInventoryService>(
-					bundle.getBundleContext(), SkuInventoryService.class, null);
-
-		serviceTracker.open();
-
-		_serviceTracker = serviceTracker;
-	}
+	private static volatile SkuInventoryService _service;
 
 }

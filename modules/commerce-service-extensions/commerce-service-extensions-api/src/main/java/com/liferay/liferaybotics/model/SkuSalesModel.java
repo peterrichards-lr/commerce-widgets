@@ -113,4 +113,7 @@ public interface SkuSalesModel extends BaseModel<SkuSales>, ShardedModel {
 	 */
 	public void setQuantitySold(int quantitySold);
 
+	@Override
+	public SkuSales cloneWithOriginalValues();
+
 }

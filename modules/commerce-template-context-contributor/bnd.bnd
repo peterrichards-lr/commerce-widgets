@@ -1,0 +1,5 @@
+Bundle-Name: commerce-template-context-contributor
+Bundle-SymbolicName: com.liferay.liferaybotics.template
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.liferaybotics.service.util

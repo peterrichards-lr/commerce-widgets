@@ -65,13 +65,4 @@ public abstract class SkuInventoryFinderBaseImpl
 	@Reference
 	protected SkuInventoryPersistence skuInventoryPersistence;
 
-	static {
-		try {
-			Class.forName(LiferayboticsPersistenceConstants.class.getName());
-		}
-		catch (ClassNotFoundException classNotFoundException) {
-			throw new ExceptionInInitializerError(classNotFoundException);
-		}
-	}
-
 }

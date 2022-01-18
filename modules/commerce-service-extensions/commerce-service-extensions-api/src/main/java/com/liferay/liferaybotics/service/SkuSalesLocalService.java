@@ -15,6 +15,7 @@
 package com.liferay.liferaybotics.service;
 
 import com.liferay.liferaybotics.model.SkuSales;
+import com.liferay.petra.sql.dsl.query.DSLQuery;
 import com.liferay.portal.kernel.dao.orm.DynamicQuery;
 import com.liferay.portal.kernel.dao.orm.Projection;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -120,6 +121,12 @@ public interface SkuSalesLocalService
 	 */
 	@Indexable(type = IndexableType.DELETE)
 	public SkuSales deleteSkuSales(String sku) throws PortalException;
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public <T> T dslQuery(DSLQuery dslQuery);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int dslQueryCount(DSLQuery dslQuery);
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public DynamicQuery dynamicQuery();

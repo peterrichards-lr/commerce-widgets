@@ -76,6 +76,11 @@ public class SkuSalesWrapper
 		}
 	}
 
+	@Override
+	public SkuSales cloneWithOriginalValues() {
+		return wrap(model.cloneWithOriginalValues());
+	}
+
 	/**
 	 * Returns the company ID of this sku sales.
 	 *

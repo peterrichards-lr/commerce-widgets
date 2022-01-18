@@ -13,10 +13,8 @@
 	commerceContext??] [#assign channelGroupId =
 	commerceContext.getCommerceChannelGroupId()!0 /] [#else] [#assign
 	channelGroupId = 0 /] [/#if] [#else] [#assign channelGroupId = 0 /]
-	[/#if] [#assign skuInventoryService =
-	serviceLocator.findService("com.liferay.liferaybotics.service.SkuInventoryService")!
-	/] [#assign skuInventories =
-	skuInventoryService.findLowestStock(themeDisplay.getCompanyId(),
+	[/#if] [#assign skuInventories =
+	commerceServiceExtensionsHelper.findLowestStock(themeDisplay.getCompanyId(),
 	channelGroupId, startIndex, endIndex)! /]
 	<table class="table table-striped">
 		<thead>
