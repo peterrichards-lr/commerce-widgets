@@ -14,13 +14,14 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 1rem;
-	border-bottom: solid var(- -spacer-1) var(- -body-bg);
+	border-bottom: solid var(--spacer-1) var(--body-bg);
 }
 
 .commerce-sales-web-1001 .header {
 	font-size: 16px;
-	line-height: 125%;
+	line-height: 33px;
 	color: #28282B;
+	margin-bottom: unset;
 }
 
 .commerce-sales-web-1001 .link {
@@ -31,9 +32,17 @@
 }
 
 .commerce-sales-web-1001 th {
-	font-weight: bold;
-	font-size: 12px;
-	line-height: 16px;
+	font-size: 14px;
+	line-height: 21px;
+	color: #646F80;
+	vertical-align: middle;
+}
+
+.commerce-sales-web-1001 td {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 21px;
+	color: #28282B;
 }
 
 .commerce-sales-web-1001 .footer {

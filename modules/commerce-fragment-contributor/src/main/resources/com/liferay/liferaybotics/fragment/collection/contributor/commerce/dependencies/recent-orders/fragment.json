@@ -1,0 +1,10 @@
+{
+	"fragmentEntryKey": "recent-orders",
+	"name": "recent-orders",
+	"thumbnail": "recent-orders.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css"
+}

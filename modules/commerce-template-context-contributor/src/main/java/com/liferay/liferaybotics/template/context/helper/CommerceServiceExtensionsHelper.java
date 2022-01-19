@@ -1,4 +1,4 @@
-package com.liferay.liferaybotics.service.util.api;
+package com.liferay.liferaybotics.template.context.helper;
 
 import com.liferay.liferaybotics.model.SkuInventory;
 import com.liferay.liferaybotics.model.SkuSales;

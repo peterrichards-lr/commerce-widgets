@@ -1,0 +1,83 @@
+<div class="commerce-orders-web-901">
+	[#if configuration.showHeader == true]
+	<div class="header-wapper">
+		<div><${configuration.headingLevel}
+			class="header">${configuration.headerText}</${configuration.headingLevel}>
+		</div>
+		[#if configuration.showButton == true && configuration.buttonPosition
+		== 'header']
+		<div>
+			<a href="${configuration.buttonLink}">
+				<button class="btn btn-${configuration.buttonType} link">${configuration.buttonText}</button>
+			</a>
+		</div>
+		[/#if]
+	</div>
+	[/#if] [#if request?? && request.getAttribute??] [#assign
+	commerceContext = request.getAttribute("COMMERCE_CONTEXT")! /] [/#if]
+	[#attempt] [#assign startIndex = configuration.startIndex?number ! /]
+	[#recover] [#assign startIndex = -1 ! /] [/#attempt] [#attempt]
+	[#assign endIndex = configuration.endIndex?number ! /] [#recover]
+	[#assign endIndex = -1 ! /] [/#attempt] [#if
+	commerceOrderServiceFacade?? && commerceContext??] [#if
+	configuration.filterAccountContext == true] [#if
+	commerceContext.getCommerceAccount??] [#assign commerceAccount =
+	commerceContext.getCommerceAccount()! /] [#if commerceAccount?? &&
+	commerceAccount.getCommerceAccountId?? &&
+	commerceOrderServiceFacade.getCommerceOrdersByCommerceAccountId??]
+	[#assign commerceAccountId = commerceAccount.getCommerceAccountId()]
+	[#assign entries =
+	commerceOrderServiceFacade.getCommerceOrdersByCommerceAccountId(commerceAccountId,
+	startIndex, endIndex, configuration.sortAsc!false)! /] [/#if] [/#if]
+	[#else] [#if commerceContext.getCommerceChannelGroupId?? &&
+	commerceOrderServiceFacade.getCommerceOrdersByCommerceChannelId??]
+	[#assign channelGroupId = commerceContext.getCommerceChannelGroupId()
+	/] [#assign entries =
+	commerceOrderServiceFacade.getCommerceOrdersByCommerceChannelId(channelGroupId,
+	startIndex, endIndex, configuration.sortAsc!false)! /] [/#if] [/#if]
+	[/#if]
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Order ID</th>
+				<th scope="col">Account Name</th>
+				<th scope="col">Created Date</th>
+				<th scope="col">Status</th>
+				<th scope="col">Final Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			[#if entries?has_content] [#list entries as curCommerceOrder]
+			[#assign orderId = curCommerceOrder.getCommerceOrderId()! /] [#assign
+			orderMoney = curCommerceOrder.getTotalMoney()! /]
+			<tr>
+				[#if configuration.addLink!false == true]
+				<td><a
+					href="https://webserver-lctlifebotics-prd.lfr.cloud/group/liferaybotics/~/control_panel/manage?p_p_id=com_liferay_commerce_order_web_internal_portlet_CommerceOrderPortlet&amp;p_p_lifecycle=0&amp;p_p_state=maximized&amp;_com_liferay_commerce_order_web_internal_portlet_CommerceOrderPortlet_mvcRenderCommandName=%2Fcommerce_order%2Fedit_commerce_order&amp;_com_liferay_commerce_order_web_internal_portlet_CommerceOrderPortlet_commerceOrderId=${orderId}">${curCommerceOrder.getCommerceOrderId()}</a></td>
+				[#else]
+				<td>${curCommerceOrder.getCommerceOrderId()}</td> [/#if]
+				<td>${curCommerceOrder.getCommerceAccountName()}</td>
+				<td>${curCommerceOrder.getCreateDate()?date}</td> [#if
+				curCommerceOrder.isOpen()!false == true]
+				<td><span class="label label-warning"> <span
+						class="label-item label-item-expand">Open</span>
+				</span></td> [#else]
+				<td><span class="label label-success"> <span
+						class="label-item label-item-expand">Closed</span>
+				</span></td> [/#if]
+				<td>${orderMoney.format(localeUtil.getDefault())}</td>
+			</tr>
+
+			[/#list] [/#if]
+		</tbody>
+	</table>
+
+	[#if configuration.showButton == true && configuration.buttonPosition
+	== 'footer']
+	<div class="footer">
+		<a href="${configuration.buttonLink}">
+			<button class="btn btn-${configuration.buttonType} link">${configuration.buttonText}</button>
+		</a>
+	</div>
+	[/#if]
+</div>

@@ -1,6 +1,7 @@
 package com.liferay.liferaybotics.template.context.contributor;
 
-import com.liferay.liferaybotics.service.util.api.CommerceServiceExtensionsHelper;
+import com.liferay.liferaybotics.template.context.helper.CommerceServiceExtensionsHelper;
+import com.liferay.liferayobtics.service.proxy.CommerceOrderServiceFacade;
 import com.liferay.portal.kernel.template.TemplateContextContributor;
 
 import java.util.Map;
@@ -26,8 +27,12 @@ public class CommerceTemplateContextContributor
 		Map<String, Object> contextObjects, HttpServletRequest request) {
 
 		contextObjects.put("commerceServiceExtensionsHelper", _commerceServiceExtensionsHelper);
+		contextObjects.put("commerceOrderServiceFacade", _commerceOrderServiceFacade);
 	}
 	
 	@Reference
 	protected CommerceServiceExtensionsHelper _commerceServiceExtensionsHelper;
+	
+	@Reference
+	private CommerceOrderServiceFacade _commerceOrderServiceFacade;
 }

@@ -16,6 +16,27 @@
 					"description": "The index offset of the last entry. A value of -1 will return the full set",
 					"type": "text",
 					"defaultValue": "5"
+				},
+				{
+					"name": "addLink",
+					"label": "Add Link",
+					"description": "Adds a link to the order.",
+					"type": "checkbox",
+					"defaultValue": false
+				},
+				{
+					"name": "filterAccountContext",
+					"label": "Filter by Account",
+					"description": "Filters the orders by the account within CommerceContext.",
+					"type": "checkbox",
+					"defaultValue": true
+				},
+				{
+					"name": "sortAsc",
+					"label": "Sort Ascending",
+					"description": "Sorts the orders ascending when selected, otherwise, descending.",
+					"type": "checkbox",
+					"defaultValue": false
 				}
 			]
 		},
@@ -34,7 +55,7 @@
 					"label": "Header Text",
 					"description": "The header text",
 					"type": "text",
-					"defaultValue": "Inventory"
+					"defaultValue": "Recent Orders"
 				},
 				{
 					"dataType": "string",
@@ -120,7 +141,7 @@
 					"label": "Button Link",
 					"description": "The button link",
 					"type": "text",
-					"defaultValue": "/group/liferaybotics/~/control_panel/manage?p_p_id=com_liferay_commerce_inventory_web_internal_portlet_CommerceInventoryPortlet&p_p_lifecycle=0&p_p_state=maximized&p_v_l_s_g_id=42754&p_p_auth=c8uDPPjd"
+					"defaultValue": "/group/liferaybotics/~/control_panel/manage?p_p_id=com_liferay_commerce_order_web_internal_portlet_CommerceOrderPortlet&p_p_lifecycle=0&p_p_state=maximized&p_v_l_s_g_id=42754&p_p_auth=QVRcbvIi"
 				},
 				{
 					"name": "buttonText",

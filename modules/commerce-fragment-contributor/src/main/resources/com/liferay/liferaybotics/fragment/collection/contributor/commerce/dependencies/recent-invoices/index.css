@@ -1,4 +1,4 @@
-.commerce-inventory-web-1001 {
+.commerce-invoices-web-901 {
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 400;
@@ -9,7 +9,7 @@
 	overflow: hidden;
 }
 
-.commerce-inventory-web-1001 .header-wapper {
+.commerce-invoices-web-901 .header-wapper {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -17,34 +17,34 @@
 	border-bottom: solid var(--spacer-1) var(--body-bg);
 }
 
-.commerce-inventory-web-1001 .header {
+.commerce-invoices-web-901 .header {
 	font-size: 16px;
 	line-height: 33px;
 	color: #28282B;
 	margin-bottom: unset;
 }
 
-.commerce-inventory-web-1001 .link {
+.commerce-invoices-web-901 .link {
 	font-size: .75rem;
 	line-height: 1.125rem;
 	color: #71D2E8;
 	margin-bottom: unset;
 }
 
-.commerce-inventory-web-1001 th {
+.commerce-invoices-web-901 th {
 	font-size: 14px;
 	line-height: 21px;
 	color: #646F80;
 	vertical-align: middle;
 }
 
-.commerce-inventory-web-1001 td {
+.commerce-invoices-web-901 td {
 	font-weight: 400;
 	font-size: 14px;
 	line-height: 21px;
 	color: #28282B;
 }
 
-.commerce-inventory-web-1001 .footer {
+.commerce-invoices-web-901 .footer {
 	text-align: center;
 }

@@ -1,0 +1,4 @@
+Bundle-Name: commerce-service-facades
+Bundle-SymbolicName: com.liferay.liferayobtics.service.proxy
+Bundle-Version: 1.0.1
+Export-Package: com.liferay.liferayobtics.service.proxy

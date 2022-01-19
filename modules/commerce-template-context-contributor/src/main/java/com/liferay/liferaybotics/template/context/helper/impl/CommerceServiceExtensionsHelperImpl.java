@@ -1,10 +1,10 @@
-package com.liferay.liferaybotics.service.util;
+package com.liferay.liferaybotics.template.context.helper.impl;
 
 import com.liferay.liferaybotics.model.SkuInventory;
 import com.liferay.liferaybotics.model.SkuSales;
 import com.liferay.liferaybotics.service.SkuInventoryService;
 import com.liferay.liferaybotics.service.SkuSalesService;
-import com.liferay.liferaybotics.service.util.api.CommerceServiceExtensionsHelper;
+import com.liferay.liferaybotics.template.context.helper.CommerceServiceExtensionsHelper;
 
 import java.util.List;
 
@@ -32,5 +32,5 @@ public class CommerceServiceExtensionsHelperImpl implements CommerceServiceExten
 	private SkuInventoryService _skuInventoryService;
 
 	@Reference
-	private SkuSalesService _skuSalesService;
+	private SkuSalesService _skuSalesService;	
 }

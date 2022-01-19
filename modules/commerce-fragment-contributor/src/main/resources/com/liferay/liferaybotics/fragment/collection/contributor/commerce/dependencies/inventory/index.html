@@ -4,6 +4,13 @@
 		<div><${configuration.headingLevel}
 			class="header">${configuration.headerText}</${configuration.headingLevel}>
 		</div>
+		[#if configuration.showButton == true && configuration.buttonPosition == 'header']
+		<div>
+			<a href="${configuration.buttonLink}">
+				<button class="btn btn-${configuration.buttonType} link">${configuration.buttonText}</button>
+			</a>
+		</div>
+		[/#if]
 	</div>
 	[/#if] [#attempt] [#assign startIndex = configuration.startIndex?number
 	/] [#recover] [#assign startIndex = -1 /] [/#attempt] [#attempt]
@@ -39,7 +46,7 @@
 		</tbody>
 	</table>
 
-	[#if configuration.showButton == true]
+	[#if configuration.showButton == true && configuration.buttonPosition == 'footer']
 	<div class="footer">
 		<a href="${configuration.buttonLink}">
 			<button class="btn btn-${configuration.buttonType} link">${configuration.buttonText}</button>

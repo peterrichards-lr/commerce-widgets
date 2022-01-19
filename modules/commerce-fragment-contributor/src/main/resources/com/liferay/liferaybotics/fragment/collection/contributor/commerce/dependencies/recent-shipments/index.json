@@ -16,6 +16,13 @@
 					"description": "The index offset of the last entry. A value of -1 will return the full set",
 					"type": "text",
 					"defaultValue": "5"
+				},
+				{
+					"name": "addLink",
+					"label": "Add Link",
+					"description": "Adds a link to the order.",
+					"type": "checkbox",
+					"defaultValue": false
 				}
 			]
 		},
@@ -34,7 +41,7 @@
 					"label": "Header Text",
 					"description": "The header text",
 					"type": "text",
-					"defaultValue": "Inventory"
+					"defaultValue": "Recent Shipments"
 				},
 				{
 					"dataType": "string",
@@ -120,7 +127,7 @@
 					"label": "Button Link",
 					"description": "The button link",
 					"type": "text",
-					"defaultValue": "/group/liferaybotics/~/control_panel/manage?p_p_id=com_liferay_commerce_inventory_web_internal_portlet_CommerceInventoryPortlet&p_p_lifecycle=0&p_p_state=maximized&p_v_l_s_g_id=42754&p_p_auth=c8uDPPjd"
+					"defaultValue": "/group/liferaybotics/~/control_panel/manage?p_p_id=com_liferay_commerce_shipment_web_internal_portlet_CommerceShipmentPortlet&p_p_lifecycle=0&p_p_state=maximized&p_v_l_s_g_id=42754&p_p_auth=ga0ezFiN"
 				},
 				{
 					"name": "buttonText",

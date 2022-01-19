@@ -1,0 +1,10 @@
+{
+	"fragmentEntryKey": "recent-invoices",
+	"name": "recent-invoices",
+	"thumbnail": "recent-invoices.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css"
+}

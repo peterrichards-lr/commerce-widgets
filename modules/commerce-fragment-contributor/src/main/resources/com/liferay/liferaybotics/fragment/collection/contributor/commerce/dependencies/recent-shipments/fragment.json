@@ -1,0 +1,10 @@
+{
+	"fragmentEntryKey": "recent-shipments",
+	"name": "recent-shipments",
+	"thumbnail": "recent-shipments.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css"
+}

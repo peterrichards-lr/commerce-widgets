@@ -1,5 +1,6 @@
 dependencies {
 	compileOnly project(":modules:commerce-service-extensions:commerce-service-extensions-api")
+	compileOnly project(":modules:commerce-service-facade")
 
 	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
 }

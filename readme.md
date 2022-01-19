@@ -20,6 +20,41 @@ This page fragment makes use of the service used by commerce-inventory-web to pr
 
 This page fragment makes use of the service used by commerce-sales-web to provide a custom view
 
+### Dashboard Header
+
+This page fragment is simply a standardised dashboard header for other fragements.
+
+### Recent Orders
+
+This page fragment makes use of the service façade to display recent orders in the context of the account in descending order, i.e., most recent first.
+
+### Recent Invoices
+
+This page fragment displays a list of recent invoices.
+
+### Recent Shipments
+
+This page fragment displays a list of recent shipments.
+
+## Utility Classes
+
+### Commerce Service Helper
+
+This helper class is in fact a service façade which simply exposes the methods needed by the Inventory and Product Performance page fragments.
+
+### Commerce Service Façade
+
+Contains a service façade which allows the wrapped methods to be called from Recent Orders page fragment using Freemarker.
+
+This supersedes the original repository, which has now been deprecated.
+
+### Commerce Template Context Contributor
+
+This removes the need for some of the page fragments to use serviceLocator. It does this by exposing the above classes via the template context.
+
+Commerce Service Helper - commerceServiceExtensionsHelper
+Commerce Service Façade = commerceOrderServiceFacade
+
 ## Troubleshooting
 
 ### No Commerce Channel
@@ -42,3 +77,4 @@ The following has evaluated to null or missing:
 ```
 
 This is resolved by navigating to Control Panel -> System Settings -> Template Engines -> Freemarker Engine and removing the Restricted Variables entry for the serviceLocator.
+
