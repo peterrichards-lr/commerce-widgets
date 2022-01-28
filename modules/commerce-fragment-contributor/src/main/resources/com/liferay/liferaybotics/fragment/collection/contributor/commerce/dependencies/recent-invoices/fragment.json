@@ -6,5 +6,6 @@
 	"configurationPath": "index.json",
 	"jsPath": "index.js",
 	"htmlPath": "index.html",
-	"cssPath": "index.css"
+	"cssPath": "index.css",
+	"icon": "web-content"
 }

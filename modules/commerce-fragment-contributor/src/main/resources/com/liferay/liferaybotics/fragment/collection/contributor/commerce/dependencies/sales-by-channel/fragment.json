@@ -1,11 +1,11 @@
 {
-	"fragmentEntryKey": "dashboard-heading",
-	"name": "dashboard-heading",
-	"thumbnail": "dashboard-heading.png",
+	"fragmentEntryKey": "sales-by-channel",
+	"name": "sales-by-channel",
+	"thumbnail": "sales-by-channel.png",
 	"type": "component",
 	"configurationPath": "index.json",
 	"jsPath": "index.js",
 	"htmlPath": "index.html",
 	"cssPath": "index.css",
-	"icon": "bars"
+	"icon": "analytics"
 }

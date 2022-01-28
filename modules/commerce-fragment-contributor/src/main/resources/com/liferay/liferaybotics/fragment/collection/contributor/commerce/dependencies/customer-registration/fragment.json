@@ -1,0 +1,11 @@
+{
+	"fragmentEntryKey": "customer-registration",
+	"name": "customer-registration",
+	"thumbnail": "customer-registration.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css",
+	"icon": "user"
+}

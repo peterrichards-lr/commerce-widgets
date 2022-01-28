@@ -1,11 +1,11 @@
 {
-	"fragmentEntryKey": "dashboard-heading",
-	"name": "dashboard-heading",
-	"thumbnail": "dashboard-heading.png",
+	"fragmentEntryKey": "news-slider",
+	"name": "news-slider",
+	"thumbnail": "news-slider.png",
 	"type": "component",
 	"configurationPath": "index.json",
 	"jsPath": "index.js",
 	"htmlPath": "index.html",
 	"cssPath": "index.css",
-	"icon": "bars"
+	"icon": "sheets"
 }
