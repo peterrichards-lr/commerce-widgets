@@ -1,4 +1,58 @@
 {
 	"fieldSets": [
+		{
+			"label": "General",
+			"fields": [
+				{
+					"defaultValue": false,
+					"label": "enable-debug",
+					"name": "enableDebug",
+					"type": "checkbox"
+				}
+			]
+		},
+		{
+			"label": "Registration",
+			"fields": [
+				{
+					"defaultValue": true,
+					"label": "enable-menu-text",
+					"name": "enableMenuText",
+					"type": "checkbox"
+				},
+				{
+					"defaultValue": false,
+					"label": "run-menu-text-onload",
+					"name": "runMenuTextOnload",
+					"type": "checkbox"
+				},
+				{
+					"name": "menuText",
+					"label": "menu-text",
+					"description": "The menu item text which should be hidden when the user is signed in",
+					"type": "text",
+					"defaultValue": "Register"
+				},
+				{
+					"defaultValue": true,
+					"label": "enable-register-page",
+					"name": "enableRegisterPage",
+					"type": "checkbox"
+				},
+				{
+					"defaultValue": true,
+					"label": "run-register-page-onload",
+					"name": "runRegisterPageOnload",
+					"type": "checkbox"
+				},
+				{
+					"name": "registerPageUrl",
+					"label": "register-page-url",
+					"description": "The relative URL of the registration page",
+					"type": "text",
+					"defaultValue": "/web/liferaybotics/register"
+				}
+			]
+		}
 	]
 }
