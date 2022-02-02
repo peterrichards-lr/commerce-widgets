@@ -1,0 +1,83 @@
+{
+	"fieldSets": [
+		{
+			"label": "general",
+			"fields": [
+				{
+					"defaultValue": false,
+					"label": "enable-debug",
+					"name": "enableDebug",
+					"type": "checkbox"
+				}
+			]
+		},
+		{
+			"label": "iot-simulation",
+			"fields": [
+				{
+					"defaultValue": false,
+					"label": "simulate-iot",
+					"name": "simulateIot",
+					"type": "checkbox"
+				}
+			]
+		},
+		{
+			"label": "comissioned-robots",
+			"fields": [
+				{
+					"defaultValue": true,
+					"label": "enable-commissioned-robots",
+					"name": "enableCommissionedRobots",
+					"type": "checkbox"
+				},
+				{
+					"defaultValue": "51249",
+					"label": "product-id",
+					"description": "The product identifier",
+					"name": "productId",
+					"type": "text"
+				},
+				{
+					"defaultValue": true,
+					"label": "product-purchased",
+					"name": "productPurchased",
+					"type": "checkbox"
+				},
+				{
+					"defaultValue": "10",
+					"label": "cookie-expiry",
+					"description": "The point in the future that the cookie should expire, in seconds",
+					"name": "cookieExpiry",
+					"type": "text",
+					"typeOptions": {
+						"validation": {
+							"min": 10,
+							"type": "number"
+						}
+					}
+				},
+				{
+					"defaultValue": "500",
+					"label": "redirect-delay",
+					"description": "The delay before the page redirects, in milliseconds",
+					"name": "redirectDelay",
+					"type": "text",
+					"typeOptions": {
+						"validation": {
+							"min": 100,
+							"type": "number"
+						}
+					}
+				},
+				{
+					"defaultValue": "/group/liferaybotics/p/robotic-machine-ts2-100",
+					"label": "product-page-url",
+					"description": "The relative URL of the product page",
+					"name": "productPageUrl",
+					"type": "text"
+				}
+			]
+		}
+	]
+}

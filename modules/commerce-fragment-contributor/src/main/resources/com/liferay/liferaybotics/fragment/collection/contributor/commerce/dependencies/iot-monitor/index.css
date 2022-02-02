@@ -1,0 +1,64 @@
+.fragment_608 {
+	font-family: 'Open Sans';
+	font-style: normal;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 24px;
+	background-color: transparent;
+	border-radius: 0 0 8px 8px;
+}
+
+.fragment_608.thumbnail {
+	height: auto;
+	width: 121px;
+	border-radius: 8px;
+}
+
+.detail {
+	display: flex;
+	flex-direction: column;
+	margin-left: 1rem;
+}
+
+.subtext {
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.sku {
+	font-weight: bolder;
+}
+
+.vl {
+	margin: 0 5px;
+	display: inline;
+	height: 68px;
+	border-right-style: solid;
+	border-right-width: 1px;
+	border-right-color: black;
+}
+
+.label {
+	text-transform: uppercase;
+}
+
+.fragment_608 .row {
+	padding: 1rem 1.5rem;
+	margin: auto;
+	background-color: $white;
+	border-bottom: solid 1px var(--body-bg);
+	cursor: pointer;
+}
+
+.fragment_608 .row:nth-of-type(odd) {
+	background-color: var(--table-accent-bg);
+}
+    
+.fragment_608 .row:nth-of-type(even) {
+	background-color: var(--table-bg);
+}
+
+.fragment_608 .row:last-child {
+	border-radius: 0 0 8px 8px;
+}

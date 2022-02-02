@@ -1,0 +1,37 @@
+{
+	"fieldSets": [
+		{
+			"label": "Border Radius",
+			"fields": [
+				{
+					"name": "topLeft",
+					"label": "Top-left",
+					"description": "The top-left radius",
+					"type": "text",
+					"defaultValue": "8px"
+				},
+				{
+					"name": "topRight",
+					"label": "Top-right",
+					"description": "The top-right radius",
+					"type": "text",
+					"defaultValue": "8px"
+				},
+				{
+					"name": "bottomRight",
+					"label": "Bottom-right",
+					"description": "The bottom-right radius",
+					"type": "text",
+					"defaultValue": "8px"
+				},
+				{
+					"name": "bottomLeft",
+					"label": "Bottom-left",
+					"description": "The bottom-left radius",
+					"type": "text",
+					"defaultValue": "8px"
+				}
+			]
+		}	
+	]
+}

@@ -1,0 +1,11 @@
+{
+	"fragmentEntryKey": "border-drop-zone",
+	"name": "border-drop-zone",
+	"thumbnail": "border-drop-zone.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css",
+	"icon": "layout"
+}

@@ -1,0 +1,11 @@
+{
+	"fragmentEntryKey": "iot-monitor",
+	"name": "iot-monitor",
+	"thumbnail": "iot-monitor.png",
+	"type": "component",
+	"configurationPath": "index.json",
+	"jsPath": "index.js",
+	"htmlPath": "index.html",
+	"cssPath": "index.css",
+	"icon": "code"
+}
