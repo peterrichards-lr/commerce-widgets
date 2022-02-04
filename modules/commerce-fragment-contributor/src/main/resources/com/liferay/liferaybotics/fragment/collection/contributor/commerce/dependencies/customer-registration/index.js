@@ -4,31 +4,27 @@ if (!fragmentNamespace) // If it is not set then we are in fragment editor
 if (document.body.classList.contains('has-edit-mode-menu')) // If present then we are in content page editor
 	return;
 
-if (!document.queryInnerTextAll || !document.queryInnerText) {
-	// find all elements with inner text matching a given regular expression
-	// args: 
-	//      selector: string query selector to use for identifying elements on which we 
-	//                should check innerText
-	//      regex: A regular expression for matching innerText; if a string is provided,
-	//             a case-insensitive search is performed for any element containing the string.
-	Object.prototype.queryInnerTextAll = function(selector, regex) {
-		if (typeof(regex) === 'string') regex = new RegExp(regex, 'i'); 
-		const elements = [...this.querySelectorAll(selector)];
-		const rtn = elements.filter((e)=>{
-			return e.innerText.match(regex);
-		});
+const queryInnerTextAll = function(root, selector, regex) {
+	if (typeof(regex) === 'string') regex = new RegExp(regex, 'i');
+	const elements = [...root.querySelectorAll(selector)];
+	const rtn = elements.filter((e)=>{
+		return e.innerText.match(regex);
+	});
 
-		return rtn.length === 0 ? null : rtn
-	}
+	return rtn.length === 0 ? null : rtn
+}
 
-	// find the first element with inner text matching a given regular expression
-	// args: 
-	//      selector: string query selector to use for identifying elements on which we 
-	//                should check innerText
-	//      regex: A regular expression for matching innerText; if a string is provided,
-	//             a case-insensitive search is performed for any element containing the string.
-	Object.prototype.queryInnerText = function(selector, text){
-		return this.queryInnerTextAll(selector, text)[0];
+const queryInnerText = function(root, selector, text){
+	try {
+		const result = queryInnerTextAll(root, selector, text);
+		if (Array.isArray(result)) {
+			return result[0];
+		} else {
+			return result;
+		}
+	} catch (err) {
+		console.log(err);
+		return null;
 	}
 }
 
@@ -43,7 +39,7 @@ if (enableMenuText) {
 	menuTextFunc = () => {
 		const menuText = configuration.menuText;
 		const _navbarMenu = document.querySelector("div.navbar-menu");
-		const _registerSpan = _navbarMenu.queryInnerText("span", menuText);
+		const _registerSpan = queryInnerText(_navbarMenu, "span", menuText);
 
 		if (_registerSpan) {
 			const _li = _registerSpan.closest("li");
