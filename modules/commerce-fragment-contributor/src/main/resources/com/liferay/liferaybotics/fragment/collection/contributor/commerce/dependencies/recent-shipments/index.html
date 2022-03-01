@@ -31,14 +31,17 @@
 			</tr>
 		</thead>
 		<tbody>
-			[#if shipments?has_content] [#list shipments as item] [#assign sentTo
-			= item.fetchCommerceAddress() /]
+			[#if shipments?has_content] [#list shipments as item]
 			<tr>
 				<th scope="row">${item.getCommerceShipmentId()}</th>
+				[#if item.fetchCommerceAddress()??] [#assign sentTo
+				= item.fetchCommerceAddress() /]
 				<td>${(sentTo.street1??)?then(sentTo.street1 + ', ' +
 					sentTo.street2,sentTo.street2)},<br />${sentTo.city},${sentTo.zip}
-				</td> [#if item.getStatus()==0]
-
+				</td>			
+				[#else]
+				<td></td>
+				[/#if] [#if item.getStatus()==0]
 				<td><span class="label label-warning"> <span
 						class="label-item label-item-expand">Processing</span>
 				</span></td> [#elseif item.getStatus()==3]
