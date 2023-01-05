@@ -233,58 +233,56 @@
 		left: 80%;
 	}
 </style>
-[#assign mylocale=locale?keep_before("_") /]
-[#assign redirectURL = "/"+mylocale+
-"/group/liferaybotics/"+themeDisplay.getLayout().getFriendlyURL()]
-<div class="fragment_1433">
-    <article id="slider" class="slider">
-        <div id="slide" class="slide left">
-            <ul>
-                [#if configuration.article1.content??]
-                [#assign curEntryPK = article1Object.resourcePrimKey]
-                [#assign url = "/group/liferaybotics/-/"+configuration.article1.urlTitle+"?redirect="+redirectURL]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123470")]
-                ${journalArticle?replace("#link#","${url}")}
-                [/#if]
-                [#if configuration.article2.content??]
-                [#assign curEntryPK = article2Object.resourcePrimKey]
-                [#assign url = "/group/liferaybotics/-/"+configuration.article2.urlTitle+"?redirect="+redirectURL]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123470")]
-                ${journalArticle?replace("#link#","${url}")}
-                [/#if]
-                [#if configuration.article3.content??]
-                [#assign curEntryPK = article3Object.resourcePrimKey]
-                [#assign url = "/group/liferaybotics/-/"+configuration.article3.urlTitle+"?redirect="+redirectURL]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123470")]
-                ${journalArticle?replace("#link#","${url}")}
-                [/#if]
-            </ul>
-        </div>
-        <div id="thumbnail" class="thumbnail_ left">
-            <ul class="thumbnail-list">
-                [#if configuration.article1.content??]
-                [#assign curEntryPK = article1Object.resourcePrimKey]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123464")]
-                ${journalArticle}
-                [/#if]
-                [#if configuration.article2.content??]
-                [#assign curEntryPK = article2Object.resourcePrimKey]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123464")]
-                ${journalArticle}
-                [/#if]
-                [#if configuration.article3.content??]
-                [#assign curEntryPK = article3Object.resourcePrimKey]
-                [#assign journalArticle =
-                articleService.getContentByClassPK(curEntryPK,"123464")]
-                ${journalArticle}
-                [/#if]
-                <li class="marker"></li>
-            </ul>
-        </div>
-    </article>
-</div>
+[#if articleService?? articleService.getContentByClassPK]
+    [#assign mylocale=locale?keep_before("_") /]
+    [#assign redirectURL = "/"+mylocale+
+    "/group/liferaybotics/"+themeDisplay.getLayout().getFriendlyURL()]
+    <div class="fragment_1433">
+        <article id="slider" class="slider">
+            <div id="slide" class="slide left">
+                <ul>
+                    [#if configuration.article1.content??]
+                        [#assign curEntryPK = article1Object.resourcePrimKey]
+                        [#assign url = "/group/liferaybotics/-/"+configuration.article1.urlTitle+"?redirect="+redirectURL]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123470")]
+                        ${journalArticle?replace("#link#","${url}")}
+                    [/#if]
+                    [#if configuration.article2.content??]
+                        [#assign curEntryPK = article2Object.resourcePrimKey]
+                        [#assign url = "/group/liferaybotics/-/"+configuration.article2.urlTitle+"?redirect="+redirectURL]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123470")]
+                        ${journalArticle?replace("#link#","${url}")}
+                    [/#if]
+                    [#if configuration.article3.content??]
+                        [#assign curEntryPK = article3Object.resourcePrimKey]
+                        [#assign url = "/group/liferaybotics/-/"+configuration.article3.urlTitle+"?redirect="+redirectURL]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123470")]
+                        ${journalArticle?replace("#link#","${url}")}
+                    [/#if]
+                </ul>
+            </div>
+            <div id="thumbnail" class="thumbnail_ left">
+                <ul class="thumbnail-list">
+                    [#if configuration.article1.content??]
+                        [#assign curEntryPK = article1Object.resourcePrimKey]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123464")]
+                        ${journalArticle}
+                    [/#if]
+                        [#if configuration.article2.content??]
+                        [#assign curEntryPK = article2Object.resourcePrimKey]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123464")]
+                        ${journalArticle}
+                    [/#if]
+                    [#if configuration.article3.content??]
+                        [#assign curEntryPK = article3Object.resourcePrimKey]
+                        [#assign journalArticle = articleService.getContentByClassPK(curEntryPK,"123464")]
+                        ${journalArticle}
+                    [/#if]
+                    <li class="marker"></li>
+                </ul>
+            </div>
+        </article>
+    </div>
+[#else]
+The articleService is not available
+[/#if]
