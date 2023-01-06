@@ -31,8 +31,14 @@
 	startIndex, endIndex, configuration.sortAsc!false)! /] [/#if] [/#if]
 	[#else] [#if commerceContext.getCommerceChannelGroupId?? &&
 	commerceOrderServiceFacade.getCommerceOrdersByCommerceChannelId??]
-	[#assign channelGroupId = commerceContext.getCommerceChannelGroupId()
-	/] [#assign entries =
+[#attempt]
+[#assign channelGroupId = commerceContext.getCommerceChannelGroupId()
+/]
+[#recover]
+[#assign channelError = error /]
+[/#attempt]
+[#if channelGroupId?? && channelGroupId?is_number ]
+[#assign entries =
 	commerceOrderServiceFacade.getCommerceOrdersByCommerceChannelId(channelGroupId,
 	startIndex, endIndex, configuration.sortAsc!false)! /] [/#if] [/#if]
 	[/#if]
@@ -81,3 +87,6 @@
 	</div>
 	[/#if]
 </div>
+[#else]
+${channelError}
+[/#if]
