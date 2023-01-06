@@ -233,7 +233,7 @@
 		left: 80%;
 	}
 </style>
-[#if articleService?? articleService.getContentByClassPK]
+[#if articleService?? && articleService.getContentByClassPK??]
     [#assign mylocale=locale?keep_before("_") /]
     [#assign redirectURL = "/"+mylocale+
     "/group/liferaybotics/"+themeDisplay.getLayout().getFriendlyURL()]
